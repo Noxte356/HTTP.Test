@@ -21,7 +21,7 @@ public class TestHttpHandler implements HttpHandler {
         while((line = reader.readLine()) !=null) {
             response = response + "\n" + line;
         }
-        exchange.sendResponseHeaders(301, response.length());
+        exchange.sendResponseHeaders(200, response.length());
         responseBody.write(response.getBytes(StandardCharsets.UTF_8));
 
         responseBody.flush();

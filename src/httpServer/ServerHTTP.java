@@ -9,10 +9,16 @@ import java.util.concurrent.Executors;
 public class ServerHTTP {
     public static void main(String[] args) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8001), 0);
-        server.createContext("/", new  TestHttpHandler());
+        UserDataBase userDataBase = new UserDataBase();
         server.setExecutor(Executors.newFixedThreadPool(5));
-        server.createContext("/register", new HttpHandler2());
+        server.createContext("/", new RegisterHtmlFormHandler());
+        server.createContext("/register", new RegistrationHandler(userDataBase));
+        server.createContext("/allUsers", new GetAllUsersHandler());
+        server.createContext("/user/", new UserHandler(userDataBase));
         server.start();
+//        1) Красиво вывести на сайте, в тайтле должно быть id
+//                2) при переходе на /users/{id}
+//                3) выводить всех пользователей
     }
 
 

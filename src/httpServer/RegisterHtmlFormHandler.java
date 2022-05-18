@@ -1,27 +1,19 @@
 package httpServer;
 
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-public class TestHttpHandler implements HttpHandler {
+public class RegisterHtmlFormHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "";
-        File file = new File("/Users/egor/IdeaProjects/HTTP.Test/src/Test.html");
-        FileReader fileReader = new FileReader(file);
-        BufferedReader reader = new BufferedReader(fileReader);
-
-
+        FileReader htmlFile = new FileReader();
         OutputStream responseBody = exchange.getResponseBody();
-        String line;
-        while((line = reader.readLine()) !=null) {
-            response = response + "\n" + line;
-        }
+        String response = htmlFile.read("/Users/egor/IdeaProjects/HTTP.Test/src/Test.html");
         exchange.sendResponseHeaders(200, response.length());
+
         responseBody.write(response.getBytes(StandardCharsets.UTF_8));
 
         responseBody.flush();

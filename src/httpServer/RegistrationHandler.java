@@ -9,9 +9,7 @@ import java.nio.charset.StandardCharsets;
 public class RegistrationHandler implements HttpHandler {
     private UserDataBase userDataBase;
 
-    public RegistrationHandler(UserDataBase userDataBase) {
-        this.userDataBase = userDataBase;
-    }
+
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -20,7 +18,7 @@ public class RegistrationHandler implements HttpHandler {
         String htmlFile = fileReader.read("/Users/egor/IdeaProjects/HTTP.Test/src/File2.html");
         OutputStream responseBody = exchange.getResponseBody();
         User response = bodyExtractor.extract(exchange);
-        userDataBase.add(response);
+        UserDataBase.add(response);
         String text = response.getId() + "<br>" + response.getNickName() + "<br>" + response.getMail() + "<br>" + response.getPassword();
         htmlFile = String.format(htmlFile, response.getId(), text);
         exchange.sendResponseHeaders(200, htmlFile.length());

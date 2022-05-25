@@ -2,6 +2,7 @@ package httpServer;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import jdk.javadoc.doclet.Taglet;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -10,9 +11,7 @@ import java.nio.charset.StandardCharsets;
 public class UserHandler implements HttpHandler {
     private UserDataBase userDataBase;
 
-    public UserHandler(UserDataBase userDataBase) {
-        this.userDataBase = userDataBase;
-    }
+
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {

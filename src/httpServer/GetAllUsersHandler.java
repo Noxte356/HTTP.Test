@@ -11,7 +11,6 @@ public class GetAllUsersHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
-        UserDataBase userData = new UserDataBase();
         OutputStream responseBody = exchange.getResponseBody();
 //        exchange.sendResponseHeaders(200, response.length());
 //        responseBody.write(response.getBytes(StandardCharsets.UTF_8));

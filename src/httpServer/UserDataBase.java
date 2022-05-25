@@ -1,22 +1,31 @@
 package httpServer;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserDataBase {
-    private List<User> usersDataBase = new ArrayList<>();
+    private static ArrayList<User> usersList;
 
-    public void add(User user) {
-
-        usersDataBase.add(user);
+    private UserDataBase() {
     }
 
-    public User get(int numb){
-        return usersDataBase.get(numb);
+    public static ArrayList<User> getObj(){
+        if (usersList == null){
+            usersList = new ArrayList<>();
+        }
+        return usersList;
     }
 
-    public int size(){
-        return usersDataBase.size();
+    public static void add(User user) {
+
+        usersList.add(user);
+    }
+
+    public static User get(int numb){
+        return usersList.get(numb);
+    }
+
+    public static int size(){
+        return usersList.size();
     }
 
 
